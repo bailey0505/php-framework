@@ -1,5 +1,5 @@
 # Bailey's PHP Framework
-> Custom MVP, CRUD PHP Framework. Primarily designed for fast, secure development without reliance on composer
+> Custom MVC, CRUD PHP Framework. Primarily designed for fast, secure development without reliance on composer
 
 
 ## General Overview
