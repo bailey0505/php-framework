@@ -33,10 +33,22 @@ $base['menu'] = App::GetMenu();
 
 $directoryForUsage = $_SESSION['user_folder'];
 
+
 $controller = CONTROLLERS . 'default.php';
-if(!empty($directoryForUsage) && !empty($_GET['p']) && file_exists(CONTROLLERS . $directoryForUsage . '/' . $_GET['p'] . '.php')){
+
+$controllerFindAttempt = CONTROLLERS;
+if(!empty($directoryForUsage)){
+    $controllerFindAttempt .= $directoryForUsage . "/";
+}
+if(!empty($_GET['p'])){
+    $controllerFindAttempt .= $_GET['p'];
+}
+$controllerFindAttempt .= '.php';
+
+if(file_exists(CONTROLLERS . $directoryForUsage . '/' . $_GET['p'] . '.php')){
     $controller = CONTROLLERS . $directoryForUsage . '/' . $_GET['p'] . '.php';
 }
+
 include($controller);
 
 

@@ -62,8 +62,10 @@ class AdminUser Extends Crud {
             $_SESSION['username'] = $this->username;
             $_SESSION['name'] = $this->first_name . ' ' . $this->last_name;
             $_SESSION['title'] = $this->title;
+            $_SESSION['auth_level'] = $this->auth_level;
             $_SESSION['user_folder'] = $userLevelVariables['folder'];
             $_SESSION['auth_text'] = $userLevelVariables['display_name'];
+            
             return true;
         }
         return false;

@@ -49,11 +49,27 @@ class App {
      * Check to see if a user is currently logged in
      * @return boolean
      */
-    public static function IsUserLoggedIn(){
+    public static function IsAuthenticated(){
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         if($_SESSION['authenticated'] === true && !empty($_SESSION['user_Id'])) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check if a user can access a restricted area
+     * @param int $auth the auth you need to access area
+     * @return boolean
+     */
+    public static function UserCanAccessPage($auth){
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if($_SESSION['authenticated'] === true && $_SESSION['auth_level'] <= $auth){
             return true;
         }
         return false;
