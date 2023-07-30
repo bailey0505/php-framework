@@ -1,0 +1,25 @@
+Options -Indexes
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} ^/$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/index.php$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/index$ [NC]
+RewriteRule ^(.*)$ /routes/web.php?p=index [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ /routes/web.php?p=$1&p1=$2&p2=$3 [L,QSA]
+
+RewriteRule ^logout$ /logout.php [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+)/?$ /routes/web.php?p=$1&p1=$2 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ([^/]+)/?$ /routes/web.php?p=$1 [QSA,L]
+
+ErrorDocument 500 /500.php
+ErrorDocument 404 /404.php

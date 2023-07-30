@@ -1,0 +1,7 @@
+Time : 18:19:34
+SQLSTATE[HY000]: General error: 2031 No data supplied for parameters in prepared statement
+Raw SQL : SELECT * FROM admin_users WHERE username = :username
+
+Time : 18:17:07
+SQLSTATE[HY000]: General error: 2031 No data supplied for parameters in prepared statement
+Raw SQL : SELECT * FROM admin_users WHERE username = :username
