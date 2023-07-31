@@ -28,14 +28,6 @@ class App {
     }
 
     /**
-     * Function for getting menu items dependant on user level
-     * @retun array
-     */
-    public static function GetMenu(){
-
-    }
-
-    /**
      * Function for redirecting to new page
      * @param string $location Where you want to redirect to 
      * @return null
@@ -60,6 +52,14 @@ class App {
     }
 
     /**
+     * Function for getting auth level text
+     * @return string|false
+     */
+    public static function GetAuthLevelText(){
+        return (!empty($_SESSION['user_folder']) ? $_SESSION['user_folder'] : false);
+    }
+
+    /**
      * Check if a user can access a restricted area
      * @param int $auth the auth you need to access area
      * @return boolean
@@ -74,4 +74,53 @@ class App {
         }
         return false;
     }
+
+    /***************  Menu Defines - Do not code anything else beyond this point  ******************/
+
+    /**
+     * Function for getting menu items dependant on user level
+     * @return array
+     */
+    public static function GetMenu(){
+        $text = App::GetAuthLevelText();
+
+        if(!empty($text)){
+            if($text == 'admin'){
+                return App::GetAdminMenu();
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Get Admin menu items
+     * @return array
+     */
+    public static function GetAdminMenu(){
+        return array(
+            'main' => array(
+                array(
+                    'name'=> 'Page Example',
+                    'link'=> '/page',
+                    'icon' => 'book'
+                ),
+                array(
+                    'name'=> 'Page Example 2',
+                    'link'=> '#',
+                    'icon' => 'monitor',
+                    'list_name' => 'example-page-2',
+                    'sub_items' => array(
+                        array(
+                            'name'=>'SubItem 1',
+                            'link'=> '/page2/sub-item'
+                        )
+                    )
+                ),
+            ),
+            'footer'=>false
+        );
+    }
+
 }

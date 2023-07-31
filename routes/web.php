@@ -62,8 +62,8 @@ $pageNeeded = 'pages/' . $directoryForUsage . '/' . $pageNeeded . '.html';
 try {
     echo $twig->render($pageNeeded);
 } catch (Exception $e) {
-    echo $e;
-    //echo $twig->render('404.html', array('error'=> $e));
+    //echo $e;
+    echo $twig->render('pages/404.html', array('error'=> $e));
 }
 
 ?>
