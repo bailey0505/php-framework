@@ -12,8 +12,8 @@
 
   <!-- AdminKit CSS file -->
   <link href="/app/Modules/adminkit-pro/dist/css/dark.css" rel="stylesheet">
-  <link href="/app/Modules/adminkit-pro/dist/css/light.css" rel="stylesheet">
-   
+  <!-- <link href="/app/Modules/adminkit-pro/dist/css/light.css" rel="stylesheet"> -->
+  <link rel="icon" type="image/x-icon" href="/public/assets/img/fav-icon.png">
   <style>
     body {
         opacity: 0;
@@ -23,8 +23,12 @@
   {% block head %}{% endblock %}
 
 </head>
-
-<body data-theme="colored" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
+<!--
+    theme options: Dark, Light, Colored, Default
+    position: left, right
+    layout: default, compact
+-->
+<body data-theme="dark" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
@@ -278,4 +282,6 @@
     <script src="/app/Modules/jquery/jquery-3.7.0.min.j.js"></script>
     <script src="/app/Modules/adminkit-pro/dist/js/app.js"></script>
     <script src="/public/assets/js/app.js"></script>
+
+    {% block scripts %}{% endblock %}
 </body>

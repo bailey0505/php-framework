@@ -3,5 +3,5 @@
 [SQL]
 host = localhost
 user = root
-password = 'Bailey2023!'
+password = '8=,bxpd-Yqf@p@:T!N'
 dbname = php_framework
