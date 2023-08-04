@@ -33,7 +33,7 @@ if(!empty($_POST['action'])){
                 $ADMIN->reset_token = AdminUser::GenerateResetToken();
                 $ADMIN->update();
 
-                $MAILER = new Mailer();
+                $MAILER = new Mailer(DEBUG);
 
                 echo "<pre>";
                 var_dump($ADMIN);
