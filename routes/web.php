@@ -22,7 +22,7 @@ require(ROOT . 'app/Library/AdminUser.php');
 
 $loader = new \Twig\Loader\FilesystemLoader(ROOT . 'public/views/');
 $twig = new \Twig\Environment($loader, [
-    'debug' => true
+    'debug' => DEBUG
 ]);
 
 $pageVars = array();
@@ -33,7 +33,7 @@ $base['menu'] = App::GetMenu();
 
 $directoryForUsage = $_SESSION['user_folder'];
 
-
+$skipUserLevelDirectory = false;
 $controller = CONTROLLERS . 'default.php';
 
 $controllerFindAttempt = CONTROLLERS;
@@ -57,13 +57,10 @@ $twig->addGlobal('base', $base);
 $twig->addGlobal('globals', $GLOBALS);
 $twig->addGlobal('session', $_SESSION);
 
-$pageNeeded = 'pages/' . $directoryForUsage . '/' . $pageNeeded . '.html';
+$pageNeeded = ($skipUserLevelDirectory === false ? 'pages/' . $directoryForUsage . '/' . $pageNeeded . '.html' : 'pages/' . $pageNeeded . '.html');
 
 try {
     echo $twig->render($pageNeeded);
 } catch (Exception $e) {
-    //echo $e;
     echo $twig->render('pages/404.html', array('error'=> $e));
 }
-
-?>

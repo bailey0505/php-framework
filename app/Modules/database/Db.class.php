@@ -52,7 +52,7 @@ class DB
      */
     private function Connect()
     {
-        $this->settings = parse_ini_file("settings.ini.php");
+        $this->settings = parse_ini_file(ROOT . "settings/database.ini.php");
         $dsn            = 'mysql:dbname=' . $this->settings["dbname"] . ';host=' . $this->settings["host"] . '';
         try {
             # Read settings from INI file, set UTF8

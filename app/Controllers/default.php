@@ -12,7 +12,8 @@ if(empty($_GET['p']) || $_GET['p1'] == 'index'){
     }
     $pageNeeded = 'login';
 }else if($_GET['p'] == 'reset-password'){
-
+    $pageNeeded = 'reset-password';
+    $skipUserLevelDirectory = true;
 }else if(!App::IsAuthenticated()){
     App::Redirect('/login');
 }

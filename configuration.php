@@ -1,7 +1,15 @@
 <?php
 
-define("INSTALL_ROOT", realpath($_SERVER["DOCUMENT_ROOT"]) . "/");
+/**
+ * Configuration file for framework - this should be included at the top of ALL backend files
+ * @author Bailey Rotellini <baileyrotellini1998@gmail.com>
+ */
 
+//Define our root of project
+define("ROOT", realpath($_SERVER["DOCUMENT_ROOT"]) . "/");
+
+//This debugging setting controls every debug setting in the framework
+define("DEBUG", true);
 
 //Loaction defines
 define('CONTROLLERS', ROOT . 'app/Controllers/');

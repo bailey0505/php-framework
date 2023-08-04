@@ -1,9 +1,8 @@
 <?php
 
 /** 
-* Contact Class
-* @package NextGen Media - Admin  
-* @version Revision: 1.0
+* Admin User Class Class
+* @author Bailey Rotellini <baileyrotellini1998@gmail.com>
 * @access public  
 */
 
@@ -27,7 +26,7 @@ class AdminUser Extends Crud {
 	protected $settingsTable  = 'user_level_settings';
 
 
-     /**
+    /**
    * Construct Function for our class
    * @param int $Id primary key to load
    * @return null
@@ -49,10 +48,11 @@ class AdminUser Extends Crud {
         return false;
     }
 
-    public function VerifyPassword(){
-
-    }
-
+    /**
+     * Function to login to platform 
+     * @param string $password the generic text password string
+     * @return boolean
+     */
     public function Login($password){
         if($this->IsLoaded() && password_verify($password, $this->password)){
             $userLevelVariables = $this->DATABASE->row("SELECT * FROM " . $this->settingsTable . ' WHERE Id_user_level_settings=:Id_user_level_settings', array("Id_user_level_settings"=>$this->auth_level));
@@ -69,6 +69,21 @@ class AdminUser Extends Crud {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Static function to generate random reset token
+     * @param int $length the length you want the reset token. Default 128
+     * @return string
+     */
+    public static function GenerateResetToken($length = 128){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 }
