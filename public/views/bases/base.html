@@ -25,5 +25,15 @@
     <script src="/app/Modules/adminkit-pro/dist/js/app.js"></script>
     <script src="/public/assets/js/app.js"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            {% if messages is not empty %}
+                {% for message in messages %}
+                    ShowAlert('{{ message.message }}', '{{ message.type }}');
+                {% endfor %}
+            {% endif %}
+        });
+    </script>
+
     {% block scripts %}{% endblock %}
 </body>

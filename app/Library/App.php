@@ -17,6 +17,8 @@ class App {
         return array(
             'site_name' => "PHP Framework",
             'page_title_base' => "PHP Framework",
+            'email'=>'baileyrotellini1998@gmail.com',
+            'theme' => 'dark',
             'show_search' => false,
             "show_mega_menu" => false,
             "show_resources" => false,
@@ -73,6 +75,40 @@ class App {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Function for queing a message to display
+     * @param string $message The message
+     * @param string $type The type of message(error, success, info etc.)
+     * @return null
+     */
+    public static function QueueMessage($message, $type){
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(!isset($_SESSION['messages'])){
+            $_SESSION['messages'] = array();
+        }
+        $_SESSION['messages'][] = array(
+            'message' => $message,
+            'type' => $type
+        );
+    }
+    
+    /**
+     * Function to compile messages array
+     * @return array|null
+     */
+    public static function CompileMessages(){
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(!empty($_SESSION['messages'])){
+            $messages = $_SESSION['messages'];
+            unset($_SESSION['messages']);
+            return $messages;
+        }
     }
 
     /***************  Menu Defines - Do not code anything else beyond this point  ******************/

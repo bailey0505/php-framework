@@ -51,8 +51,10 @@ if(file_exists(CONTROLLERS . $directoryForUsage . '/' . $_GET['p'] . '.php')){
 
 include($controller);
 
+$messages = App::CompileMessages();
 
 $twig->addGlobal('data', $pageVars);
+$twig->addGlobal('messages', $messages);
 $twig->addGlobal('base', $base);
 $twig->addGlobal('globals', $GLOBALS);
 $twig->addGlobal('session', $_SESSION);

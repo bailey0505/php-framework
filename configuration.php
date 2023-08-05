@@ -11,6 +11,9 @@ define("ROOT", realpath($_SERVER["DOCUMENT_ROOT"]) . "/");
 //This debugging setting controls every debug setting in the framework
 define("DEBUG", true);
 
+//Define if we are allowed to send emails
+define("SEND_EMAILS", true);
+
 //Loaction defines
 define('CONTROLLERS', ROOT . 'app/Controllers/');
 

@@ -1,7 +1,8 @@
 ;<?php return; ?>
 
 [MAIL]
-host = 'smtp.gmail.com'
+Host = 'smtp.gmail.com'
 Port = 587
-Username = 'baileyrotellini1998@gmail.co'
+Username = 'baileyrotellini1998@gmail.com'
 Password = 'ektmclubgcbzkzll'
+SmtpSecure='tls'

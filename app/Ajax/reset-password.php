@@ -34,10 +34,21 @@ if(!empty($_POST['action'])){
                 $ADMIN->update();
 
                 $MAILER = new Mailer(DEBUG);
+                
+                $app = App::GetSiteProfileVaribales();
+                $mailResult = $MAILER->Send(array(array("email"=>$ADMIN->username)), $app['site_name'] . '- Reset Password', 'reset-password', $ADMIN->variables);
 
-                echo "<pre>";
-                var_dump($ADMIN);
-                die();
+                if($mailResult === true){
+                    $result['result'] = true;
+                    $result['message'] = 'If you had an account in our system you will receive an email to reset your password';
+                }else{
+                    $ADMIN->reset_password = 0;
+                    $ADMIN->reset_token = null;
+                    $ADMIN->save();
+
+                    $result['result'] = false;
+                    $result['message'] = 'Their was an error with sending email to reset password. Please contact support';
+                }
 
             }else{
                 $result['result'] = true;
@@ -46,6 +57,22 @@ if(!empty($_POST['action'])){
         }else{
             $result['result'] = false;
             $result['message'] = 'No username passed';
+        }
+    }else if($action == 'reset-password'){
+        $ADMIN = new AdminUser($_POST['Id_admin_users']);
+
+        if($ADMIN->IsLoaded() && $ADMIN->reset_token == $_POST['reset_token']){
+            $ADMIN->reset_token = null;
+            $ADMIN->reset_password = 0;
+            $ADMIN->SetPassword($_POST['password']);
+
+            App::QueueMessage("Password Reset Successfully", "success");
+
+            $result['result'] = true;
+            $result['message'] = 'Password reset successfully';
+        }else{
+            $result['result'] = false;
+            $result['message'] = 'Could not reset password. Please contact support';
         }
     }else{
         $result['result'] = false;
