@@ -18,7 +18,8 @@ class App {
             'site_name' => "PHP Framework",
             'page_title_base' => "PHP Framework",
             'email'=>'baileyrotellini1998@gmail.com',
-            'theme' => 'dark',
+            'theme' => 'default', //(light, dark, colored, default)
+            'demo_mode' => false,
             'show_search' => false,
             "show_mega_menu" => false,
             "show_resources" => false,

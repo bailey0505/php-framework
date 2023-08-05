@@ -29,7 +29,7 @@ $pageVars = array();
 $base = array();
 $base['page_title'] = 'PHP Framework';
 $base['site_profile'] = App::GetSiteProfileVaribales();
-$base['menu'] = App::GetMenu();
+$base['menu'] = App::GetMenu(); 
 
 $directoryForUsage = $_SESSION['user_folder'];
 

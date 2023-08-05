@@ -82,25 +82,6 @@ class Mailer {
         $this->MAILER->addCC($address);
     }
 
-
-    /*
-        $mail = new PHPMailer;
-        $mail->isSMTP(); 
-        $mail->SMTPDebug = 0; 
-        $mail->Host = "smtp.gmail.com";
-        $mail->Port = 587;
-        $mail->SMTPSecure = 'tls'; 
-        $mail->SMTPAuth = true;
-        $mail->Username = $settings['username'];
-        $mail->Password = $settings['password'];
-        $mail->setFrom($settings['username'], "Alyssa Michelle Videography");
-        $mail->addAddress('alyssamvideo@gmail.com', "Alyssa Boyd");
-        $mail->Subject = 'New Inquiry';
-        $mail->IsHTML(true);
-        $mail->msgHTML($html);
-
-    */
-
     /**
      * Function for sending email
      * @param array $addresses the emails to send to
@@ -114,7 +95,7 @@ class Mailer {
         if(empty(SEND_EMAILS)){
             return true;
         }
-        
+
         $settings = parse_ini_file(ROOT . 'settings/mail.ini.php');
 
         $this->MAILER->isSMTP(); 

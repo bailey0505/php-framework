@@ -11,7 +11,8 @@ CREATE TABLE admin_users (
     `first_name` varchar(64),
     `last_name` varchar(64),
     `title` varchar(64),
-    `profile_image` varchar(128)
+    `profile_image` varchar(128),
+    `site_theme` varchar(16)
 );
 
 INSERT INTO admin_users(`username`, `password`, `auth_level`, `first_name`, `last_name`, `title`) VALUES ('baileyrotellini1998@gmail.com', '$2y$12$MBaTGvxxlrq1FsDd/hcHEuvtQaQCybj7rVN5xXBcpWJxrvXYHeWJS', 0, 'Bailey', 'Rotellini', 'Developer');

@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" type="image/x-icon" href="/public/assets/img/fav-icon.png">
- 
-  <title>{{ base.site_profile.page_title_base }} - {% block title %}{% endblock %}</title>
- 
-  <!-- AdminKit CSS file -->
-  <link href="/app/Modules/adminkit-pro/dist/css/dark.css" rel="stylesheet">
-  <!-- <script src="/app/Modules/adminkit-pro/dist/js/settings.js"></script> -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="/public/assets/img/fav-icon.png">
+    
+    <title>{{ base.site_profile.page_title_base }} - {% block title %}{% endblock %}</title>
+
+    {% set theme = base.site_profile.theme %}
+
+        {% if session.site_theme is not empty %}
+            {% set theme = session.site_theme %}
+        {% endif %}
+    
+    <!-- AdminKit CSS file -->
+    <link href="/app/Modules/adminkit-pro/dist/css/dark.css" rel="stylesheet">
+    {% if theme != 'dark' %}    
+        <link href="/app/Modules/adminkit-pro/dist/css/light.css" rel="stylesheet"> 
+    {% endif %}
+
+    {% if base.site_profile.demo_mode == true %}
+        <script src="/app/Modules/adminkit-pro/dist/js/settings.js"></script>
+    {% endif %}
+
 </head>
 
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">

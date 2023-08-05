@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
- 
-  <title>{{ base.site_profile.page_title_base }} - {{ base.page_title }}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>{{ base.site_profile.page_title_base }} - {{ base.page_title }}</title>
 
+    {% set theme = base.site_profile.theme %}
 
-  <!-- AdminKit CSS file -->
-  <link href="/app/Modules/adminkit-pro/dist/css/dark.css" rel="stylesheet">
-  <!-- <link href="/app/Modules/adminkit-pro/dist/css/light.css" rel="stylesheet"> -->
-  <link rel="icon" type="image/x-icon" href="/public/assets/img/fav-icon.png">
-  <style>
-    body {
-        opacity: 0;
-    }
-</style>
+    {% if session.site_theme is not empty %}
+        {% set theme = session.site_theme %}
+    {% endif %}
+
+    <!-- AdminKit CSS file -->
+    <link href="/app/Modules/adminkit-pro/dist/css/dark.css" rel="stylesheet">
+
+    {% if theme != 'dark' %}    
+        <link href="/app/Modules/adminkit-pro/dist/css/light.css" rel="stylesheet"> 
+    {% endif %}
+
+    {% if base.site_profile.demo_mode == true %}
+        <script src="/app/Modules/adminkit-pro/dist/js/settings.js"></script>
+    {% endif %}
+
+    <link rel="icon" type="image/x-icon" href="/public/assets/img/fav-icon.png">
+    <style>
+        body {
+            opacity: 0;
+        }
+    </style>
 
   {% block head %}{% endblock %}
 
@@ -28,7 +41,7 @@
     position: left, right
     layout: default, compact
 -->
-<body data-theme="dark" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
+<body data-theme="{{ theme }}" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
