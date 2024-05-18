@@ -40,13 +40,16 @@ $controllerFindAttempt = CONTROLLERS;
 if(!empty($directoryForUsage)){
     $controllerFindAttempt .= $directoryForUsage . "/";
 }
+
 if(!empty($_GET['p'])){
     $controllerFindAttempt .= $_GET['p'];
+}else{
+    $controllerFindAttempt .= "index";
 }
 $controllerFindAttempt .= '.php';
 
-if(file_exists(CONTROLLERS . $directoryForUsage . '/' . $_GET['p'] . '.php')){
-    $controller = CONTROLLERS . $directoryForUsage . '/' . $_GET['p'] . '.php';
+if(file_exists($controllerFindAttempt)){
+    $controller = $controllerFindAttempt;
 }
 
 include($controller);
@@ -61,8 +64,8 @@ $twig->addGlobal('session', $_SESSION);
 
 $pageNeeded = ($skipUserLevelDirectory === false ? 'pages/' . $directoryForUsage . '/' . $pageNeeded . '.html' : 'pages/' . $pageNeeded . '.html');
 
-try {
+try{
     echo $twig->render($pageNeeded);
-} catch (Exception $e) {
+}catch(Exception $e){
     echo $twig->render('pages/404.html', array('error'=> $e));
 }

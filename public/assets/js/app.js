@@ -1,5 +1,5 @@
 /**
- * Application JS file. ALl functions here should be universal
+ * Application JS file. ALL functions here should be universal
  * @author Bailey Rotellini <baileyrotellini1998@gmail.com>
  */
 
@@ -45,5 +45,3 @@ function ShowAlert(message, type, positionX, positionY, duration){
 
 
 }
-
-//
