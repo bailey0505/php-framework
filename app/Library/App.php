@@ -13,11 +13,12 @@ class App {
      * Return variables associated with site profile
      * @return array
      */
-    public static function GetSiteProfileVaribales(){
+    public static function GetSiteProfileVariables(){
         return array(
             'site_name' => "PHP Framework",
             'page_title_base' => "PHP Framework",
             'email'=>'baileyrotellini1998@gmail.com',
+            'public' => false,
             'theme' => 'default', //(light, dark, colored, default)
             'demo_mode' => false,
             'show_search' => false,

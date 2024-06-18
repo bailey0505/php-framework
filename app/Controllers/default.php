@@ -1,13 +1,16 @@
 <?php
 
+$app = App::GetSiteProfileVariables();
+
+
 if(empty($_GET['p']) || $_GET['p1'] == 'index'){
-    if(!App::IsAuthenticated()){
+    if(!App::IsAuthenticated() && $app['public'] === false){
         App::Redirect("/login");
     }
     $pageNeeded = 'index';
 }else if($_GET['p'] == 'login'){
     if(App::IsAuthenticated()){
-        App::Redirect("/");
+        App::Redirect("/admin/dashboard");
     }
     $pageNeeded = 'login';
 }else if($_GET['p'] == 'reset-password'){
@@ -25,7 +28,7 @@ if(empty($_GET['p']) || $_GET['p1'] == 'index'){
     $skipUserLevelDirectory = true;
 }else if($_GET['p'] == 'profile' && App::IsAuthenticated()){
     $ADMIN = new AdminUser($_SESSION['user_Id']);
-
+        
     if($ADMIN->IsLoaded()){
         $skipUserLevelDirectory = true;
         $pageVars['user'] = $ADMIN->variables;
@@ -33,6 +36,6 @@ if(empty($_GET['p']) || $_GET['p1'] == 'index'){
     }else{
         App::Redirect('/');
     }
-}else if(!App::IsAuthenticated()){
+}else if(!App::IsAuthenticated() && $app['public'] === false){
     App::Redirect('/login');
 }

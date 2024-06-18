@@ -35,7 +35,7 @@ if(!empty($_POST['action'])){
 
                 $MAILER = new Mailer(DEBUG);
                 
-                $app = App::GetSiteProfileVaribales();
+                $app = App::GetSiteProfileVariables();
                 $mailResult = $MAILER->Send(array(array("email"=>$ADMIN->username)), $app['site_name'] . '- Reset Password', 'reset-password', $ADMIN->variables);
 
                 if($mailResult === true){

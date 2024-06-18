@@ -28,7 +28,7 @@ $twig = new \Twig\Environment($loader, [
 $pageVars = array();
 $base = array();
 $base['page_title'] = 'PHP Framework';
-$base['site_profile'] = App::GetSiteProfileVaribales();
+$base['site_profile'] = App::GetSiteProfileVariables();
 $base['menu'] = App::GetMenu(); 
 
 $directoryForUsage = $_SESSION['user_folder'];

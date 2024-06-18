@@ -41,7 +41,7 @@ class Mailer {
         ]);
         $this->MAILER = new PHPMailer();
 
-        $this->app = App::GetSiteProfileVaribales();
+        $this->app = App::GetSiteProfileVariables();
 	}
 
     /**
